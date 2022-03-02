@@ -39,11 +39,7 @@ class RefactoringController extends Controller
             return collect(['Wallet', 'Pants'])->contains($product['product_type']);
         })->flatMap(function ($product){
             return $product['variants'];
-        });
-
-        $totalPrice = $totalPrice->reduce(function ($total, $totalPrice){
-            return $total += $totalPrice['price'];
-        }, 0);
+        })->sum('price');
 
         return $totalPrice;
 
