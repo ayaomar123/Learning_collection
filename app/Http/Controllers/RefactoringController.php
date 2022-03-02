@@ -88,4 +88,38 @@ class RefactoringController extends Controller
 
         dd($decimal);
     }
+
+    public function getEvents()
+    {
+        return json_decode(Storage::disk('public')->get('events.json'), true);
+    }
+
+    public function totalScore()
+    {
+        $events = $this->getEvents();
+
+        $score = [];
+        foreach ($events as $event)
+        {
+            switch ($event['type']){
+                case 'PushEvent':
+                    $score[] = 5;
+                    break;
+                case 'CreateEvent':
+                    $score[] = 4;
+                    break;
+                case 'IssuesEvent':
+                    $score[] = 3;
+                    break;
+                case 'CommitCommentEvent':
+                    $score[] = 2;
+                    break;
+                default:
+                    $score[] = 1;
+                    break;
+            }
+        }
+
+        dd(collect($score)->sum());
+    }
 }
