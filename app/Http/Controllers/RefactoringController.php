@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RefactoringController extends Controller
 {
@@ -67,5 +68,24 @@ class RefactoringController extends Controller
         });
 
         dd($shifts);
+    }
+
+    public function binaryToDecimal()
+    {
+        $binary = '100110101'; // total equals 309
+
+       /* $expo = Str::length($binary) - 1;
+        $decimal = 0;
+
+        for ($i = 0; $i < Str::length($binary) ; $i++)
+        {
+            $decimal += $binary[$i] * (2 ** $expo);
+            $expo--;
+        }*/
+        $decimal = collect(str_split($binary))->reverse()->values()->map(function ($binary, $exp){
+            return $binary * (2 ** $exp);
+        })->sum();
+
+        dd($decimal);
     }
 }

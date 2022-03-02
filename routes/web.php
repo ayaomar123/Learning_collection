@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('get_total_price', [\App\Http\Controllers\RefactoringController::class, 'sumPriceForProductTypeLampAndWallet']);
 Route::get('get_csv', [\App\Http\Controllers\RefactoringController::class, 'getCsv']);
+Route::get('binary_to_decimal', [\App\Http\Controllers\RefactoringController::class, 'binaryToDecimal']);
