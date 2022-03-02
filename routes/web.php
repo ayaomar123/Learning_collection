@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('get_total_price', [\App\Http\Controllers\RefactoringController::class, 'sumPriceForProductTypeLampAndWallet']);
+Route::get('get_csv', [\App\Http\Controllers\RefactoringController::class, 'getCsv']);

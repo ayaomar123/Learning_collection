@@ -44,4 +44,28 @@ class RefactoringController extends Controller
         return $totalPrice;
 
     }
+
+    public function getCsv()
+    {
+        $shifts = [
+            'Shipping_Steve_A7',
+            'Sales_B9',
+            'Support_Tara_K11',
+            'J15',
+            'Warehouse_B2',
+            'Shipping_Dave_A6',
+        ];
+
+    /*    $newShifts = [];
+        foreach ($shifts as $shift)
+        {
+            $newShifts[] = last(explode('_', $shift));
+        }*/
+
+        $shifts = collect($shifts)->map(function ($shift){
+            return collect(explode('_', $shift))->last();
+        });
+
+        dd($shifts);
+    }
 }
