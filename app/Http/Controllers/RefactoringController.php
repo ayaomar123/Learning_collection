@@ -98,28 +98,28 @@ class RefactoringController extends Controller
     {
         $events = $this->getEvents();
 
-        $score = [];
+        $total = 0;
         foreach ($events as $event)
         {
             switch ($event['type']){
                 case 'PushEvent':
-                    $score[] = 5;
+                    $total += 5;
                     break;
                 case 'CreateEvent':
-                    $score[] = 4;
+                    $total += 4;
                     break;
                 case 'IssuesEvent':
-                    $score[] = 3;
+                    $total += 3;
                     break;
                 case 'CommitCommentEvent':
-                    $score[] = 2;
+                    $total += 2;
                     break;
                 default:
-                    $score[] = 1;
+                    $total +=1;
                     break;
             }
         }
 
-        dd(collect($score)->sum());
+        dd($total);
     }
 }
